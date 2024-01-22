@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stores</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            /* biar ada spasi di atas tabel */
+        }
+
+        th,
+        td {
+            border: 1px solid blue;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: blue;
+            color: white;
+            /* background color untuk header */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+            /* background color untuk baris genap */
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+            /* background color pas dihover */
+        }
+    </style>
+</head>
+
+<body>
+    <nav style="list-style-type: none; padding: 0; margin: 0; text-align: center">
+        <ul>
+            <li style="display: inline; margin-right: 10px">
+                <a href="/" style="text-decoration: none; color: rgb(31, 10, 216) 0">Home</a>
+            </li>
+            <li style="display: inline; margin-right: 10px">
+                <a href="/stores/add" style="text-decoration: none; color: rgb(31, 10, 216) 0">Add New Store</a>
+            </li>
+            <li style="display: inline">
+                <a href="/employees" style="text-decoration: none; color: rgb(31, 10, 216) 0">Employees</a>
+            </li>
+        </ul>
+    </nav>
+    <section style="text-align: center; max-width: 700px; margin: auto">
+        <h1>Employee List</h1>
+        <button onclick="redirect('back')">All</button>
+        <button onclick="redirect('Staff')">Staff</button>
+        <button onclick="redirect('Supervisor')">Supervisor</button>
+        <button onclick="redirect('Manager')">Manager</button>
+        <button onclick="redirect('CEO')">CEO</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                    <th>Store Code</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(employee=> { %>
+                    <tr>
+                        <td>
+                            <%= employee.firstName %>
+                                <%= employee.lastName %>
+                        </td>
+                        <td>
+                            <%= employee.position %>
+                        </td>
+                        <td>
+                            <%= employee.salary %>
+                        </td>
+                        <td>
+                            <% if (employee.store) { %>
+                                <%= employee.store.code %>
+                                    <% } %>
+                        </td>
+                        <td style="text-align: center">
+                            <a href="/employees/delete/<%=employee.id%>" style="
+                            display: inline-block;
+                            padding: 8px 16px;
+                            background-color: #3498db;
+                            color: #fff;
+                            text-decoration: none;
+                            border-radius: 4px;
+                            ">Delete</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </section>
+    <script>
+        function redirect(position) {
+            if (position == 'back') {
+                window.location.href = `/employees`;
+            } else {
+                window.location.href = `/employees?position=${position}`;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

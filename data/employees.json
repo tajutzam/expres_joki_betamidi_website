@@ -1,0 +1,74 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "dateOfBirth": "1990-05-15",
+        "education": "Bachelor's Degree",
+        "position": "Staff",
+        "StoreId": 1,
+        "salary": 200000
+    },
+    {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "dateOfBirth": "1985-09-20",
+        "education": "Master's Degree",
+        "position": "Supervisor",
+        "StoreId": 1,
+        "salary": 1000000
+    },
+    {
+        "firstName": "Andini",
+        "lastName": "Meilani",
+        "dateOfBirth": "1991-04-15",
+        "education": "",
+        "position": "CEO",
+        "StoreId": 2,
+        "salary": 3000000
+    },
+    {
+        "firstName": "Artap",
+        "lastName": "Nanaya",
+        "dateOfBirth": "1987-06-20",
+        "education": "",
+        "position": "Manager",
+        "StoreId": 3,
+        "salary": 1500000
+    },
+    {
+        "firstName": "Artap",
+        "lastName": "Pekerti",
+        "dateOfBirth": "1985-10-16",
+        "education": "",
+        "position": "CEO",
+        "StoreId": 2,
+        "salary": 3000000
+    },
+    {
+        "firstName": "Budi",
+        "lastName": "Indonesia",
+        "dateOfBirth": "1993-02-14",
+        "education": "",
+        "position": "Staff",
+        "StoreId": 1,
+        "salary": 200000
+    },
+    {
+        "firstName": "Koloni",
+        "lastName": "Kucing",
+        "dateOfBirth": "1986-03-24",
+        "education": "",
+        "position": "Supervisor",
+        "StoreId": 3,
+        "salary": 1000000
+    },
+    {
+        "firstName": "Siti",
+        "lastName": "Wardani",
+        "dateOfBirth": "1988-07-07",
+        "education": "",
+        "position": "Manager",
+        "StoreId": 2,
+        "salary": 1500000
+    }
+]

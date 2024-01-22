@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stores</title>
+    <style>
+        label {
+            font-size: 20px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav style="list-style-type: none; padding: 0; margin: 0; text-align: center">
+        <ul>
+            <li style="display: inline; margin-right: 10px">
+                <a href="/" style="text-decoration: none; color: rgb(31, 10, 216) 0">Home</a>
+            </li>
+            <li style="display: inline; margin-right: 10px">
+                <a href="/stores/add" style="text-decoration: none; color: rgb(31, 10, 216) 0">Add New Store</a>
+            </li>
+            <li style="display: inline">
+                <a href="/employees" style="text-decoration: none; color: rgb(31, 10, 216) 0">Employees</a>
+            </li>
+        </ul>
+    </nav>
+    <section style="text-align: center; max-width: 700px; margin: auto">
+        <form method="post" action="">
+            <h1>Create New Store</h1>
+            <h2>Please filled the form below to add a new store!</h2>
+            <label for="">What is the name of your store?</label>
+            <br />
+            <br />
+            <input type="text" name="name" />
+            <br />
+            <br />
+            <br />
+
+            <label for="">Where does your store located?</label>
+            <br />
+            <br />
+            <br />
+            <input type="text" name="location" />
+            <br />
+            <br />
+            <br />
+            <label for="">What kind of store do yo want?</label>
+            <br />
+            <br />
+            <br />
+            <input type="radio" id="Mart" name="storeType" value="Mart" />
+            <label for="Mart">Mart</label>
+
+            <input type="radio" id="Midi" name="storeType" value="Midi" />
+            <label for="Midi">Midi</label>
+
+            <input type="radio" id="Express" name="storeType" value="Express" />
+            <label for="Express">Express</label>
+            <br />
+            <button type="submit">submit</button>
+        </form>
+    </section>
+</body>
+
+</html>

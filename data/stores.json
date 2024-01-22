@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Toko Pak Edgy",
+        "code": "002-1631004259774",
+        "location": "Jakarta Timur",
+        "category": "Midi"
+    },
+    {
+        "name": "Waroeng Bu Wait",
+        "code": "003-1631004336841",
+        "location": "Bogor Barat",
+        "category": "Express"
+    },
+    {
+        "name": "Beta April",
+        "code": "001-1631004440279",
+        "location": "Medan Barat",
+        "category": "Mart"
+    },
+    {
+        "name": "Charlie Mei",
+        "code": "003-1631004458824",
+        "location": "Tangerang Selatan",
+        "category": "Express"
+    }
+  ]

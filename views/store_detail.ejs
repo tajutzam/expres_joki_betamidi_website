@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stores</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        /* biar ada spasi di atas tabel */
+      }
+
+      th,
+      td {
+        border: 1px solid blue;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: blue;
+        color: white;
+        /* background color untuk header */
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+        /* background color untuk baris genap */
+      }
+
+      tbody tr:hover {
+        background-color: #f5f5f5;
+        /* background color pas dihover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      style="list-style-type: none; padding: 0; margin: 0; text-align: center"
+    >
+      <ul>
+        <li style="display: inline; margin-right: 10px">
+          <a href="/" style="text-decoration: none; color: rgb(31, 10, 216) 0"
+            >Home</a
+          >
+        </li>
+        <li style="display: inline; margin-right: 10px">
+          <a
+            href="/stores/add"
+            style="text-decoration: none; color: rgb(31, 10, 216) 0"
+            >Add New Store</a
+          >
+        </li>
+        <li style="display: inline">
+          <a
+            href="/employees"
+            style="text-decoration: none; color: rgb(31, 10, 216) 0"
+            >Employees</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <section style="text-align: center; max-width: 700px; margin: auto">
+      <h1><%=store.name%></h1>
+      <h1>Code :<%=store.code%></h1>
+      <span id="message" style="color: red"></span>
+
+      <% if (store.employees.length == 0) { %>
+      <span>There is no employee yet</span>
+      <% } %>
+      <p>
+        click <a href="/stores/detail/<%= store.id %>/employees/add">here</a> to
+        add employee
+      </p>
+      <h3>
+        Employees Fee : <% if (totalSalary != 0) { %>
+        <script>
+          var salary = "<%= totalSalary %>";
+          function formatRupiah(angka) {
+            var reverse = angka.toString().split("").reverse().join(""),
+              ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join(".").split("").reverse().join("");
+            return "Rp " + ribuan;
+          }
+          document.write(formatRupiah(salary));
+        </script>
+        <% } else { %>
+        <span>-</span>
+        <% }%>
+      </h3>
+      <% if (store.employees.length != 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>FirstName</th>
+            <th>Lastname</th>
+            <th>Age</th>
+            <th>Education</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% store.employees.forEach(employee => { %>
+          <tr>
+            <td><%= employee.firstName %></td>
+            <td><%= employee.lastName %></td>
+            <td>
+              <script>
+                var dob = new Date("<%= employee.dateOfBirth %>");
+                var currentDate = new Date();
+                var age = Math.floor(
+                  (currentDate - dob) / (365.25 * 24 * 60 * 60 * 1000)
+                );
+                document.write(age + " tahun");
+              </script>
+            </td>
+            <td><%=employee.education%></td>
+            <td><%=employee.position %></td>
+            <td>
+              <script>
+                var salary = "<%= employee.salary %>";
+                function formatRupiah(angka) {
+                  var reverse = angka.toString().split("").reverse().join(""),
+                    ribuan = reverse.match(/\d{1,3}/g);
+                  ribuan = ribuan.join(".").split("").reverse().join("");
+                  return "Rp " + ribuan;
+                }
+                document.write(formatRupiah(salary));
+              </script>
+            </td>
+            <td style="text-align: center">
+              <button onclick="editEmployee('<%= employee.id %>')">edit</button>
+              <button onclick="deleteEmployee('<%= employee.id %>')">
+                delete
+              </button>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <% } %>
+    </section>
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[[]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // Get the value of the 'message' parameter from the current URL
+      var messageValue = getParameterByName("message");
+      let messageElement = document.getElementById("message");
+      messageElement.textContent = messageValue;
+
+      function deleteEmployee(id) {
+        window.location.href = `/stores/detail/<%= store.id %>/employees/${id}/delete`;
+      }
+
+      function editEmployee(id) {
+        window.location.href = `/stores/detail/<%= store.id %>/employees/${id}/edit`;
+      }
+
+      function redirect(position) {
+        if (position == "back") {
+          window.location.href = `/employees`;
+        } else {
+          window.location.href = `/employees?position=${position}`;
+        }
+      }
+    </script>
+  </body>
+</html>
