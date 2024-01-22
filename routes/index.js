@@ -43,12 +43,38 @@ router.post(
   Controller.employeePost
 );
 
+router.get(
+  "/stores/detail/:storeId/employees/:employeeId/delete",
+  Controller.deleteEmployeesFromStore
+);
+router.get(
+  "/stores/detail/:storeId/employees/:employeeId/edit",
+  Controller.editEmployee
+);
+router.post(
+  "/stores/detail/:storeId/employees/:employeeId/edit",
+  [
+    body("firstName").notEmpty().withMessage("firstname is required"),
+    body("lastName").notEmpty().withMessage("lastName is required"),
+    body("dateOfBirth")
+      .notEmpty()
+      .withMessage("date of birth is required")
+      .custom((value, { req }) => {
+        // Periksa umur di atas 17 tahun
+        const today = new Date();
+        const birthDate = new Date(value);
+        const age = today.getFullYear() - birthDate.getFullYear();
 
-router.get("/stores/detail/:storeId/employees/:employeeId/delete" , Controller.deleteEmployeesFromStore);
-router.get("/stores/detail/:storeId/employees/:employeeId/edit" , Controller.editEmployee);
-router.post("/stores/detail/:storeId/employees/:employeeId/edit" , Controller.updateEmployee);
-
-
-
+        if (age <= 17) {
+          throw new Error("Age must be above 17 years");
+        }
+        return true;
+      }),
+    body("education").notEmpty().withMessage("education is required"),
+    body("position").notEmpty().withMessage("position is required"),
+    body("salary").notEmpty().withMessage("salary is required"),
+  ],
+  Controller.updateEmployee
+);
 
 module.exports = router;
